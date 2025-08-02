@@ -3,5 +3,5 @@ uv = "latest"
 actionlint = "latest"
 pre-commit = "latest"
 
-[tasks.actionlint]
-run = "actionlint"
+[settings]
+idiomatic_version_file_enable_tools = []
