@@ -1,3 +1,6 @@
+type Point = tuple[float, float]
+
+
 def main() -> str:
     return "hello world"
 
