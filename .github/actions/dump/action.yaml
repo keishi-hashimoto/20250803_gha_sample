@@ -1,0 +1,24 @@
+name: Dump
+description: |
+  dump github context
+  if flag is true
+inputs:
+  enabled:
+    required: false
+    deault: "true"
+    description: whether dump github context or not
+outputs:
+  dumped-dt:
+    value: ${{ steps.current.outputs.date }}
+    description: Datetime when this action runs
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      if: ${{ inputs.enabled == 'true' }}
+      env:
+        CONTEXT: ${{ toJson(github) }}
+      run: echo "${CONTEXT}"
+    - id: current
+      shell: bash
+      run: echo "date=$(date)" >> "${GITHUB_OUTPUT}"

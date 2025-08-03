@@ -37,3 +37,16 @@ jobs:
         run: uv sync --dev --all-extras --locked
       - name: Run tests
         run: uv run pytest -s
+
+  dump_context:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - id: run_action
+        uses: ./.github/actions/dump
+        with:
+          enabled: "true"
+      - run: echo "${{ steps.run_action.outputs.dumped-dt }}"
